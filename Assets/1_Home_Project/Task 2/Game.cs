@@ -1,14 +1,14 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets
+namespace Assets.Task2
 {
     public class Game : MonoBehaviour
     {
         private Player _player;
 
         private List<IWeapon> _weapons;
-        private int _weaponIndex = 0;
+        private int _nextWeaponIndex = 0;
 
         private void Awake()
         {
@@ -30,11 +30,11 @@ namespace Assets
 
         public void ChangeWeaponToPlayer()
         {
-            if (_weapons.Count == _weaponIndex)
-                _weaponIndex = 0;
+            if (_nextWeaponIndex == _weapons.Count)
+                _nextWeaponIndex = 0;
 
-            _player.SetWeapon(_weapons[_weaponIndex]);
-            _weaponIndex++;
+            _player.SetWeapon(_weapons[_nextWeaponIndex]);
+            _nextWeaponIndex++;
         }
     }
 }

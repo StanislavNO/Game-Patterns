@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections;
 using UnityEngine;
 
-namespace Assets
+namespace Assets.Task2
 {
     public class Player
     {

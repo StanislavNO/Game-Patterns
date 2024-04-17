@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets
+namespace Assets.Task2
 {
     public class Gun : IWeapon
     {

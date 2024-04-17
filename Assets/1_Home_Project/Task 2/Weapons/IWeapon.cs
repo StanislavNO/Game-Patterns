@@ -1,4 +1,4 @@
-﻿namespace Assets
+﻿namespace Assets.Task2
 {
     public interface IWeapon
     {

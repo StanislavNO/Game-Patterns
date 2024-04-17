@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets
+namespace Assets.Task2
 {
     public class ShotGun : IWeapon
     {
@@ -22,7 +22,7 @@ namespace Assets
 
             _currencyBullet -= _sizeShot;
 
-            Debug.Log($"Выстрел из {nameof(ShotGun)} бесконечным патроном");
+            Debug.Log($"Выстрел из {nameof(ShotGun)} 3-мя патроном");
         }
 
         private void AddBullet()
