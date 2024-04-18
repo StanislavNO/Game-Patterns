@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Assets.Task4
 {
-    public class RedMarker : IMarker
+    public class RedMarker : Enemy
     {
-        public Color Color => Color.red;
+        
     }
 }

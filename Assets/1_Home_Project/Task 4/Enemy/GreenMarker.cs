@@ -2,8 +2,8 @@
 
 namespace Assets.Task4
 {
-    public interface IMarker 
+    public class GreenMarker : Enemy
     {
-        Color Color { get; }
+
     }
 }

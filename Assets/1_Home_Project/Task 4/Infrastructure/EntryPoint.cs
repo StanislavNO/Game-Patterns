@@ -1,11 +1,14 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Assets.Task4
 {
     public class EntryPoint : MonoBehaviour
     {
+        //[SerializeField] private VictoryHandler handler;
         [SerializeField] private StartDisplay _startDisplay;
+        [SerializeField] private Transform EnemyPointCollection;
 
         private VictoryHandler _handler;
 
@@ -20,6 +23,7 @@ namespace Assets.Task4
         public void SetHandler(VictoryHandler handler)
         {
             _handler = handler;
+            _handler.Init(EnemyPointCollection);
         }
     }
 }

@@ -474,9 +474,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a103e9edb8d7d94d872e0b196f572fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Curtain: {fileID: 2020219112405435209}
+  _dropdown: {fileID: 0}
   _allColor: {fileID: 3672455753043349618}
   _oneColor: {fileID: 3184490344516123053}
+  Curtain: {fileID: 2020219112405435209}
 --- !u!1 &6456346966167921540
 GameObject:
   m_ObjectHideFlags: 0
