@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 namespace Assets.Task4
@@ -7,6 +8,8 @@ namespace Assets.Task4
     {
         private Ray _ray;
         private RaycastHit _hit;
+
+        public event Action<Enemy> EnemyDied;
 
         private void Update()
         {
@@ -24,6 +27,7 @@ namespace Assets.Task4
             {
                 if (_hit.collider.TryGetComponent(out Enemy enemy))
                 {
+                    EnemyDied?.Invoke(enemy);
                     enemy.Die();
                 }
             }

@@ -59,7 +59,7 @@ namespace Assets.Task4
 
         private void InstallOneColorHandler()
         {
-            _entryPoint?.SetHandler(new OneColorHandler());
+            _entryPoint?.SetHandler(new OneColorHandler(_entryPoint));
             TurnOffButtons();
         }
 

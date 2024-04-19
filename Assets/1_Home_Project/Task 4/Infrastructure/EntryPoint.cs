@@ -1,12 +1,15 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Net.NetworkInformation;
 using UnityEngine;
 
 namespace Assets.Task4
 {
     public class EntryPoint : MonoBehaviour
     {
-        //[SerializeField] private VictoryHandler handler;
+        [SerializeField] private EnemyPool enemyPool;
+        [SerializeField] private ScoreManager _scorer;
         [SerializeField] private StartDisplay _startDisplay;
         [SerializeField] private Transform EnemyPointCollection;
 
@@ -15,15 +18,20 @@ namespace Assets.Task4
         private void Awake()
         {
             Instantiate(_startDisplay);
+
+
             _startDisplay.Construct(this);
+
+            Instantiate(_scorer);
+            _scorer.Construct();
 
             DontDestroyOnLoad(this);
         }
 
-        public void SetHandler(VictoryHandler handler)
+        public void SetHandler(Type type)
         {
-            _handler = handler;
-            _handler.Init(EnemyPointCollection);
+            object instance = Activator.CreateInstance(type);
+            _handler = new instance(EnemyPointCollection);
         }
     }
 }

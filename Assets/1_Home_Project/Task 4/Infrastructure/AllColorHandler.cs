@@ -5,9 +5,20 @@ namespace Assets.Task4
 {
     public class AllColorHandler : VictoryHandler
     {
-        public override void Update()
+        private int _enemies;
+
+        public AllColorHandler(Transform enemyPointCollection) : base(enemyPointCollection)
         {
-            throw new System.NotImplementedException();
+            _enemies = GreenEnemy + WhiteEnemy + RedEnemy;
+        }
+
+        public override void Update(Enemy enemy)
+        {
+            _enemies--;
+            Debug.Log($"Убит {enemy}");
+
+            if (_enemies == 0)
+                Debug.Log("Победа");
         }
     }
 }
