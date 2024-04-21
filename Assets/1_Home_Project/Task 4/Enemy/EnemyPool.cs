@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace Assets.Task4
@@ -21,9 +20,9 @@ namespace Assets.Task4
         {
             foreach (Enemy enemy in _enemies)
             {
-                if (enemy is GreenMarker)
+                if (enemy.Color == Colors.Green)
                     GreenEnemy++;
-                else if (enemy is RedMarker)
+                else if (enemy.Color == Colors.Red)
                     RedEnemy++;
                 else
                     WhiteEnemy++;

@@ -1,43 +1,24 @@
 ﻿using System.Collections;
-using UnityEngine.UI;
 using UnityEngine;
 
 namespace Assets.Task4
 {
     public class StartDisplay : MonoBehaviour
     {
-        [SerializeField] private Button _allColor;
-        [SerializeField] private Button _oneColor;
         [SerializeField] private CanvasGroup Curtain;
 
-        private EntryPoint _entryPoint;
+        private ScoreManager _scorer;
+        private EnemyPool _enemyPool;
 
-        public void Construct(EntryPoint entryPoint)
+        public void Construct(ScoreManager scorer, EnemyPool enemyPool)
         {
-            _entryPoint = entryPoint;
+            _scorer = scorer;
+            _enemyPool = enemyPool;
         }
 
         private void Start()
         {
             Show();
-        }
-
-        private void OnEnable()
-        {
-            _allColor.onClick.AddListener(InstallAllColorHandler);
-            _allColor.onClick.AddListener(Hide);
-
-            _oneColor.onClick.AddListener(InstallOneColorHandler);
-            _oneColor.onClick.AddListener(Hide);
-        }
-
-        private void OnDisable()
-        {
-            _allColor.onClick.RemoveListener(InstallAllColorHandler);
-            _allColor.onClick.RemoveListener(Hide);
-
-            _oneColor.onClick.RemoveListener(InstallOneColorHandler);
-            _oneColor.onClick.RemoveListener(Hide);
         }
 
         public void Hide()
@@ -51,22 +32,14 @@ namespace Assets.Task4
             Curtain.alpha = 1f;
         }
 
-        private void InstallAllColorHandler()
+        public void InstallAllColorHandler()
         {
-            _entryPoint?.SetHandler(new AllColorHandler());
-            TurnOffButtons();
+            _scorer.SetHandler(new AllColorHandler(_enemyPool));
         }
 
-        private void InstallOneColorHandler()
+        public void InstallOneColorHandler()
         {
-            _entryPoint?.SetHandler(new OneColorHandler(_entryPoint));
-            TurnOffButtons();
-        }
-
-        private void TurnOffButtons()
-        {
-            _oneColor.enabled = false;
-            _allColor.enabled = false;
+            _scorer.SetHandler(new OneColorHandler(_enemyPool));
         }
 
         private IEnumerator DoFadeIn()
