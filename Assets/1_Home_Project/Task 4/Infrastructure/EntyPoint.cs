@@ -1,5 +1,4 @@
-﻿using UnityEditor.SceneManagement;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Assets.Task4
 {
@@ -9,7 +8,6 @@ namespace Assets.Task4
         [SerializeField] private EnemyPool _enemyPool;
         [SerializeField] private ScoreManager _scorer;
         [SerializeField] private StartDisplay _startDisplay;
-
 
         private void Awake()
         {
