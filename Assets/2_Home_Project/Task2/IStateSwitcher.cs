@@ -1,4 +1,7 @@
-﻿public interface IStateSwitcher
+﻿namespace Assets.Project2.Task2
 {
-    void SwitchState<T>() where T : IState;
+    public interface IStateSwitcher
+    {
+        void SwitchState<T>() where T : IState;
+    }
 }

@@ -2,10 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StateMachine : IStateSwitcher
+namespace Assets.Project2.Task2
 {
-    public void SwitchState<T>() where T : IState
+    public class StateMachine : IStateSwitcher
     {
-        throw new System.NotImplementedException();
+        public void SwitchState<T>() where T : IState
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
