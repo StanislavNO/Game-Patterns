@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
 
 namespace Assets.Project2.Task3
 {
@@ -10,11 +8,14 @@ namespace Assets.Project2.Task3
         private List<IState> _states;
         private IState _currencyState;
 
-        public CharacterStateMachine()
+        public CharacterStateMachine(Character character)
         {
+            CharacterData characterData = new();
+
             _states = new List<IState>()
             {
-
+                new IdlingState(this, character, characterData),
+                new RunningState(this, character, characterData)
             };
 
             _currencyState = _states[0];

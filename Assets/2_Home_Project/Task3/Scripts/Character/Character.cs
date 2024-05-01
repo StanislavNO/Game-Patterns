@@ -5,34 +5,35 @@ namespace Assets.Project2.Task3
     [RequireComponent(typeof(CharacterController))]
     public class Character : MonoBehaviour
     {
-        private PlayerInput _input;
-        private CharacterController _controller;
+        [SerializeField] private CharacterConfig _config;
+
         private CharacterStateMachine _stateMachine;
 
-        public PlayerInput Input => _input;
-        public CharacterController Controller => _controller;
+        public PlayerInput Input { get; private set; }
+        public CharacterController Controller { get; private set; }
+        public CharacterConfig CharacterConfig => _config;
 
         private void Awake()
         {
-            _input = new();
-            _stateMachine = new();
-            _controller = GetComponent<CharacterController>();
+            Input = new();
+            _stateMachine = new(this);
+            Controller = GetComponent<CharacterController>();
         }
 
         private void OnEnable()
         {
-            _input.Enable();
+            Input.Enable();
         }
 
         private void OnDisable()
         {
-            _input.Disable();
+            Input.Disable();
         }
 
         private void Update()
         {
-            _stateMachine.Update();
             _stateMachine.HandleInput();
+            _stateMachine.Update();
         }
     }
 }
