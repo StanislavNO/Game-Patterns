@@ -18,6 +18,7 @@ namespace Assets.Project2.Task3
 
         protected PlayerInput Input => _character.Input;
         protected CharacterController CharacterController => _character.Controller;
+        protected CharacterAnimationController View => _character.View;
 
         private Quaternion TurnRight => new Quaternion(0, 0, 0, 0);
         private Quaternion TurnLeft => Quaternion.Euler(0, 180, 0);
@@ -25,11 +26,13 @@ namespace Assets.Project2.Task3
         public virtual void Enter()
         {
             Debug.Log(GetType());
+
+            AddInputActionsCallback();
         }
 
         public virtual void Exit()
         {
-
+            RemoveInputActionsCallback();
         }
 
         public void HandleInput()
@@ -45,6 +48,9 @@ namespace Assets.Project2.Task3
             CharacterController.Move(velocity * Time.deltaTime);
             _character.transform.rotation = GetRotationFrom(velocity);
         }
+
+        protected virtual void AddInputActionsCallback() { }
+        protected virtual void RemoveInputActionsCallback() { }
 
         protected bool IsHorizontalInputZero() =>
             Data.XInput == 0;

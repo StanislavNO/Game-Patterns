@@ -15,7 +15,11 @@ namespace Assets.Project2.Task3
             _states = new List<IState>()
             {
                 new IdlingState(this, character, characterData),
-                new RunningState(this, character, characterData)
+                new RunningState(this, character, characterData),
+                new FallingState(this, character, characterData),
+                new JumpingState(this, character, characterData),
+                new WalkingState(this, character, characterData),
+                new SprintState(this, character, characterData)
             };
 
             _currencyState = _states[0];
