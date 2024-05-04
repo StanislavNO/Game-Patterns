@@ -6,14 +6,14 @@ namespace Assets.Project2.Task2
 {
     public class EntryPoint : MonoBehaviour
     {
-        [SerializeField] private Worker _worker;
+        [SerializeField] private Unit _unit;
 
         private StateMachine _machine;
 
         private void Awake()
         {
             _machine = new();
-            _worker.Initialize(_machine);
+            _unit.Initialize(_machine);
         }
     }
 }
