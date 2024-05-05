@@ -1,26 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Assets.Project2.Task2
+﻿namespace Assets.Project2.Task2
 {
     public class ChillState : IState
     {
+        private EnergyBar _energyBar;
+        private IStateSwitcher _switcher;
+
+        public ChillState(EnergyBar energyBar, IStateSwitcher switcher)
+        {
+            _energyBar = energyBar;
+            _switcher = switcher;
+        }
+
         public void Enter()
         {
-            throw new NotImplementedException();
+            _energyBar.FillPoints();
         }
 
         public void Exit()
         {
-            throw new NotImplementedException();
         }
 
         public void Update()
         {
-            throw new NotImplementedException();
+            if (_energyBar.Point == _energyBar.MaxPoint)
+            {
+                _switcher.SwitchState<MoveState>();
+            }
         }
     }
 }

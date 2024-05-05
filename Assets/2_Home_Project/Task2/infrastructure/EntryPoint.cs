@@ -1,19 +1,20 @@
-﻿using System.Collections;
-using System.ComponentModel;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Assets.Project2.Task2
 {
-    public class EntryPoint : MonoBehaviour
+    public class EntryPoint : MonoBehaviour, ICoroutineRunner
     {
         [SerializeField] private Unit _unit;
+        [SerializeField] private Transform _homePoint;
+        [SerializeField] private Transform _workPoint;
 
-        private StateMachine _machine;
+        private EnergyBar _energyBar;
 
         private void Awake()
         {
-            _machine = new();
-            _unit.Initialize(_machine);
+            _energyBar = new(this);
+
+            _unit.Initialize(_energyBar, _homePoint, _workPoint);
         }
     }
 }
