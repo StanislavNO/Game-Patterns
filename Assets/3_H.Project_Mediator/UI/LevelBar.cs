@@ -3,8 +3,8 @@ using UnityEngine;
 
 namespace Assets.Project3
 {
-    public class Level : MonoBehaviour
+    public class LevelBar : MonoBehaviour
     {
-
+        
     }
 }

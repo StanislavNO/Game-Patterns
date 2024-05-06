@@ -1,42 +1,44 @@
-﻿using System.Collections;
-using Unity.VisualScripting;
-using UnityEngine;
-using UnityEngine.Events;
+﻿using System;
 
 namespace Assets.Project3
 {
-    public class Health : MonoBehaviour
+    public class Health : IHealth
     {
-        [SerializeField] private UnityEvent _lifePointsOver;
-        [SerializeField] private UnityEvent _damageWasTaken;
-        [SerializeField] private int _lifePoint;
+        private const int MIN_POINT = 0;
 
-        private readonly int _minPoint = 0;
+        private int _lifePoint;
+
+        public Health(CharacterConfig config)
+        {
+            
+        }
+
+        public event Action LivePointChanged;
 
         public int LifePoint => _lifePoint;
         public int MaxLifePoint { get; private set; }
 
-        private void Awake() =>
-            MaxLifePoint = _lifePoint;
-
         public void TakeDamage(int value)
         {
-            if (value > _minPoint)
-            {
-                if (_lifePoint >= value)
-                    _lifePoint -= value;
-                else
-                    _lifePointsOver.Invoke();
-            }
+            if (value < 0)
+                throw new ArgumentOutOfRangeException(nameof(value));
 
-            _damageWasTaken.Invoke();
+            if (_lifePoint >= value)
+                _lifePoint -= value;
+            else
+                _lifePoint = MIN_POINT;
+
+            LivePointChanged?.Invoke();
         }
 
-        private void Heal(int value)
+        public void Heal(int value)
         {
+            if (value < 0)
+                throw new ArgumentOutOfRangeException(nameof(value));
+
             int drawback = MaxLifePoint - _lifePoint;
 
-            if (value > _minPoint && value <= drawback)
+            if (value > MIN_POINT && value <= drawback)
             {
                 _lifePoint += value;
             }
