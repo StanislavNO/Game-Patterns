@@ -16,5 +16,5 @@ MonoBehaviour:
     _maxHealth: 100
   _levelConfig:
     _startLevel: 1
-    _sizeLevel: 40
+    _sizeLevel: 100
   _defaultDamage: 20
