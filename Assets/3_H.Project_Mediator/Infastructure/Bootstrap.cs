@@ -17,7 +17,7 @@ namespace Assets.Project3
 
         private void Awake()
         {
-            _level = new();
+            _level = new(_config);
             _health = new(_config);
 
             _character.Construct(_health, _level);
@@ -26,6 +26,11 @@ namespace Assets.Project3
             _mediator = new(_character, _health, _level, _healthBar, _levelBar, _viewPanel);
 
             DontDestroyOnLoad(this);
+        }
+
+        private void OnDestroy()
+        {
+            _mediator.Dispose();
         }
     }
 }

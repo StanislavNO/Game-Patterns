@@ -12,5 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 638955ab7d405ed47a42140a551fb1a9, type: 3}
   m_Name: UnitConfig
   m_EditorClassIdentifier: 
-  HealthConfig:
-    MaxHealth: 100
+  _healthConfig:
+    _maxHealth: 100
+  _levelConfig:
+    _startLevel: 1
+    _sizeLevel: 40
+  _defaultDamage: 20

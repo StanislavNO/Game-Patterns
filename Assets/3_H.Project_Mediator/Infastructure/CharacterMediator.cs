@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections;
-using UnityEngine;
 
 namespace Assets.Project3
 {
@@ -10,25 +8,70 @@ namespace Assets.Project3
         private readonly LevelBar _levelBar;
         private readonly ViewPanel _viewPanel;
 
+        private Character _character;
         private readonly IHealth _health;
         private readonly ILevelUpper _level;
-        private readonly Character _character;
 
         public CharacterMediator(Character character, IHealth health, ILevelUpper level, HealthBar healthBar, LevelBar levelBar, ViewPanel viewPanel)
         {
-
             _healthBar = healthBar;
             _levelBar = levelBar;
             _viewPanel = viewPanel;
 
+            _character = character;
             _level = level;
             _health = health;
-            _character = character;
+
+            _health.Died += ShowRestartPanel;
+            _level.OnLevelChanged += ChangeLevelBar;
+            _health.LivePointChanged += ShowCurrencyHealth;
+
+            _viewPanel.Damage.onClick.AddListener(InitDamage);
+            _viewPanel.LevelUp.onClick.AddListener(UpgradeCharacter);
+            _viewPanel.Restart.onClick.AddListener(RestartLevel);
         }
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            _health.Died -= ShowRestartPanel;
+            _level.OnLevelChanged -= ChangeLevelBar;
+            _health.LivePointChanged -= ShowCurrencyHealth;
+
+            _viewPanel.Damage.onClick.RemoveListener(InitDamage);
+            _viewPanel.LevelUp.onClick.RemoveListener(UpgradeCharacter);
+            _viewPanel.Restart.onClick.RemoveListener(RestartLevel);
+        }
+
+        private void ShowCurrencyHealth(int lifePoint)
+        {
+            _healthBar.WriteHealth(lifePoint);
+        }
+
+        private void RestartLevel()
+        {
+            _viewPanel.HideRestart();
+            _health.Reset();
+            _level.Reset();
+        }
+
+        private void ShowRestartPanel()
+        {
+            _viewPanel.ShowRestart();
+        }
+
+        private void InitDamage()
+        {
+            _health.TakeDamage();
+        }
+
+        private void UpgradeCharacter()
+        {
+            _character.Upgrade();
+        }
+
+        private void ChangeLevelBar(int level)
+        {
+            _levelBar.WriteLevel(level);
         }
     }
 }

@@ -6,29 +6,40 @@ namespace Assets.Project3
     {
         private const int MIN_POINT = 0;
 
-        private int _lifePoint;
+        private int _defaultDamage;
 
         public Health(CharacterConfig config)
         {
-            
+            _defaultDamage = config.DefaultDamage;
+            MaxLifePoint = config.HealthConfig.MaxHealth;
+            LifePoint = MaxLifePoint;
         }
 
-        public event Action LivePointChanged;
+        public event Action<int> LivePointChanged;
+        public event Action Died;
 
-        public int LifePoint => _lifePoint;
+        public int LifePoint { get; private set; }
         public int MaxLifePoint { get; private set; }
+
+        public void TakeDamage() =>
+            TakeDamage(_defaultDamage);
 
         public void TakeDamage(int value)
         {
             if (value < 0)
                 throw new ArgumentOutOfRangeException(nameof(value));
 
-            if (_lifePoint >= value)
-                _lifePoint -= value;
+            if (LifePoint > value)
+            {
+                LifePoint -= value;
+            }
             else
-                _lifePoint = MIN_POINT;
+            {
+                LifePoint = MIN_POINT;
+                Died?.Invoke();
+            }
 
-            LivePointChanged?.Invoke();
+            LivePointChanged?.Invoke(LifePoint);
         }
 
         public void Heal(int value)
@@ -36,16 +47,22 @@ namespace Assets.Project3
             if (value < 0)
                 throw new ArgumentOutOfRangeException(nameof(value));
 
-            int drawback = MaxLifePoint - _lifePoint;
+            int drawback = MaxLifePoint - LifePoint;
 
             if (value > MIN_POINT && value <= drawback)
             {
-                _lifePoint += value;
+                LifePoint += value;
             }
             else if (value > drawback)
             {
-                _lifePoint = MaxLifePoint;
+                LifePoint = MaxLifePoint;
             }
+        }
+
+        public void Reset()
+        {
+            LifePoint = MaxLifePoint;
+            LivePointChanged?.Invoke(LifePoint);
         }
     }
 }

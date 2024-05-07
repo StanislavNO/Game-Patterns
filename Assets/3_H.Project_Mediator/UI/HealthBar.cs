@@ -28,10 +28,13 @@ namespace Assets.Project3
             _normalizeHealth = (_slider.maxValue / percent) *
                                (_size / percent * healthPoint);
 
-            _slider.value = Mathf.MoveTowards(
-                _slider.value,
-                _normalizeHealth,
-                Time.deltaTime * _speed);
+            while (_slider.value != _normalizeHealth)
+            {
+                _slider.value = Mathf.MoveTowards(
+                    _slider.value,
+                    _normalizeHealth,
+                    Time.deltaTime * _speed);
+            }
         }
     }
 }

@@ -21,5 +21,10 @@ namespace Assets.Project3
             _health = health;
             _levelCounter = level;
         }
+
+        public void Upgrade()
+        {
+            _levelCounter.AddPoint();
+        }
     }
 }
