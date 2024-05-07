@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Assets.Project3
 {
@@ -12,7 +8,8 @@ namespace Assets.Project3
 
     public interface ILevelCounter
     {
-        void AddPoint(int value = 0);
+        void AddPoint();
+        void AddPoint(int value);
     }
 
     public interface ILevelUpper

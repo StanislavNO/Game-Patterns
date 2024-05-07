@@ -28,9 +28,7 @@ namespace Assets.Project3
             DontDestroyOnLoad(this);
         }
 
-        private void OnDestroy()
-        {
+        private void OnDestroy() =>
             _mediator.Dispose();
-        }
     }
 }

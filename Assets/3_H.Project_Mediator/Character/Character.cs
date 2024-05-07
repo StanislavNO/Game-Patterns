@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Assets.Project3
@@ -22,9 +20,7 @@ namespace Assets.Project3
             _levelCounter = level;
         }
 
-        public void Upgrade()
-        {
+        public void Upgrade() =>
             _levelCounter.AddPoint();
-        }
     }
 }

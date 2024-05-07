@@ -29,6 +29,8 @@ namespace Assets.Project3
             _viewPanel.Damage.onClick.AddListener(InitDamage);
             _viewPanel.LevelUp.onClick.AddListener(UpgradeCharacter);
             _viewPanel.Restart.onClick.AddListener(RestartLevel);
+
+            RestartLevel();
         }
 
         public void Dispose()
@@ -42,36 +44,31 @@ namespace Assets.Project3
             _viewPanel.Restart.onClick.RemoveListener(RestartLevel);
         }
 
-        private void ShowCurrencyHealth(int lifePoint)
-        {
+        private void ShowCurrencyHealth(int lifePoint) =>
             _healthBar.WriteHealth(lifePoint);
-        }
 
         private void RestartLevel()
         {
-            _viewPanel.HideRestart();
+            _viewPanel.HideRestartButton();
             _health.Reset();
             _level.Reset();
+
+            _viewPanel.ShowBaseButtons();
         }
 
         private void ShowRestartPanel()
         {
-            _viewPanel.ShowRestart();
+            _viewPanel.ShowRestartButton();
+            _viewPanel.HideBaseButtons();
         }
 
-        private void InitDamage()
-        {
+        private void InitDamage() =>
             _health.TakeDamage();
-        }
 
-        private void UpgradeCharacter()
-        {
+        private void UpgradeCharacter() =>
             _character.Upgrade();
-        }
 
-        private void ChangeLevelBar(int level)
-        {
+        private void ChangeLevelBar(int level) =>
             _levelBar.WriteLevel(level);
-        }
     }
 }

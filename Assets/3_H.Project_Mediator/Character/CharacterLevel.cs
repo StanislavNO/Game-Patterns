@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections;
-using UnityEngine;
 
 namespace Assets.Project3
 {
     public class CharacterLevel : ILevel
     {
-        private const int DEFAULT_POINT = 1;
+        private const int DEFAULT_POINT = 50;
         private readonly int _size;
 
         private int _grade;
@@ -24,7 +22,10 @@ namespace Assets.Project3
 
         public event Action<int> OnLevelChanged;
 
-        public void AddPoint(int value = DEFAULT_POINT)
+        public void AddPoint() =>
+            AddPoint(DEFAULT_POINT);
+
+        public void AddPoint(int value)
         {
             if (value < 0)
                 throw new ArgumentOutOfRangeException(nameof(value));

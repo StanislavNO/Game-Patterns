@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 
 namespace Assets.Project3
 {
@@ -46,7 +47,7 @@ namespace Assets.Project3
         {
             if (value < 0)
                 throw new ArgumentOutOfRangeException(nameof(value));
-
+           
             int drawback = MaxLifePoint - LifePoint;
 
             if (value > MIN_POINT && value <= drawback)
