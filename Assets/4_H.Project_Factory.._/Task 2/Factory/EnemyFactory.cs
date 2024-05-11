@@ -1,26 +1,14 @@
-﻿using System.Collections;
-using UnityEngine;
-
-namespace Assets.Project4.Task2
+﻿namespace Assets.Project4.Task2
 {
     public abstract class EnemyFactory
     {
-        public abstract IEnemy Create();
-    }
-
-    public class OrkFactory : EnemyFactory
-    {
-        public override IEnemy Create()
+        protected EnemyFactory(EnemyConfig config)
         {
-            throw new System.NotImplementedException();
+            Config = config;
         }
-    }
 
-    public class ElfFactory : EnemyFactory
-    {
-        public override IEnemy Create()
-        {
-            throw new System.NotImplementedException();
-        }
+        protected EnemyConfig Config {  get; private set; }
+
+        public abstract IEnemy Create(EnemyType enemyType);
     }
 }

@@ -1,5 +1,4 @@
-﻿using Assets.Task4;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,7 +9,6 @@ namespace Assets.Project4.Task2
     public class EnemySpawner : MonoBehaviour
     {
         [SerializeField] private float _spawnCooldown;
-
         [SerializeField] private List<Transform> _spawnPoints;
 
         private EnemyFactory _enemyFactory;
@@ -19,8 +17,11 @@ namespace Assets.Project4.Task2
 
         public void Construct(EnemyFactory factory)
         {
-            _enemyFactory = factory;
+            SetFactory(factory);
+            EnemyFactoryType = _enemyFactory;
         }
+
+        public EnemyFactory EnemyFactoryType { get; private set; }
 
         public void StartWork()
         {
@@ -35,6 +36,14 @@ namespace Assets.Project4.Task2
                 StopCoroutine(_spawn);
         }
 
+        public void SetFactory(EnemyFactory factory)
+        {
+            if (factory == null)
+                throw new ArgumentNullException(nameof(factory));
+
+            _enemyFactory = factory;
+        }
+
         private IEnumerator Spawn()
         {
             WaitForSeconds delay = new(_spawnCooldown);
@@ -42,7 +51,7 @@ namespace Assets.Project4.Task2
             while (true)
             {
                 EnemyType enemyType = (EnemyType)Random.Range(0, Enum.GetValues(typeof(EnemyType)).Length);
-                IEnemy enemy = _enemyFactory.Create();
+                IEnemy enemy = _enemyFactory.Create(enemyType);
 
                 enemy.MoveTo(_spawnPoints[Random.Range(0, _spawnPoints.Count)].position);
 

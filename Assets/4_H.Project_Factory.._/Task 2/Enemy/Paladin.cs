@@ -9,5 +9,7 @@ namespace Assets.Project4.Task2
         {
             transform.position = at;
         }
+        
+        [field: SerializeField] protected EnemyConfig Config { get; private set; }
     }
 }

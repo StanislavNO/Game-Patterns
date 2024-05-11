@@ -4,7 +4,7 @@ namespace Assets.Project2.Task2
 {
     public class MoveState : IState
     {
-        private Transform _currency;
+        private Transform _currentPosition;
         private Transform _target;
         private Transform _homePoint;
         private Transform _workPoint;
@@ -16,7 +16,7 @@ namespace Assets.Project2.Task2
 
         public MoveState(IStateSwitcher switcher, IMap map, EnergyBar energyBar, Transform unitTransform)
         {
-            _currency = unitTransform;
+            _currentPosition = unitTransform;
             _homePoint = map.HomePosition;
             _workPoint = map.WorkPosition;
 
@@ -41,21 +41,21 @@ namespace Assets.Project2.Task2
         {
             MoveToTarget();
 
-            if (_currency.position == _homePoint.position)
+            if (_currentPosition.position == _homePoint.position)
                 _switcher.SwitchState<ChillState>();
 
-            if (_currency.position == _workPoint.position)
+            if (_currentPosition.position == _workPoint.position)
                 _switcher.SwitchState<WorkState>();
         }
 
         private void MoveToTarget()
         {
             Vector3 position = Vector3.MoveTowards(
-                _currency.position,
+                _currentPosition.position,
                 _target.position,
                 _step * Time.deltaTime);
 
-            _currency.position = position;
+            _currentPosition.position = position;
         }
     }
 }
