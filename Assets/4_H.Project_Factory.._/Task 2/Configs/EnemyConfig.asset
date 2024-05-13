@@ -12,8 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 683cae405b81b3b4b920e45e7f6ca727, type: 3}
   m_Name: EnemyConfig
   m_EditorClassIdentifier: 
-  <DefaultDamage>k__BackingField: 0
+  <DefaultDamage>k__BackingField: 17
   <ElfConfig>k__BackingField:
-    <Damage>k__BackingField: 20
-    <PaladinPrefab>k__BackingField: {fileID: 0}
-    <WizardPrefab>k__BackingField: {fileID: 0}
+    <Damage>k__BackingField: 16
+    <PaladinPrefab>k__BackingField: {fileID: 5477624658898400973, guid: be46b35feed7e7d4682a14c20d3b9137, type: 3}
+    <WizardPrefab>k__BackingField: {fileID: 210194826604665094, guid: 24c926efb45069348a01bec37632ffdd, type: 3}
+  <OrkConfig>k__BackingField:
+    <Damage>k__BackingField: 16
+    <PaladinPrefab>k__BackingField: {fileID: 7630335452879151800, guid: 9dd4e0732f5292d4aa5a4d06c54f5b0f, type: 3}
+    <WizardPrefab>k__BackingField: {fileID: 1253762267779089319, guid: a80f439230eff134aa76d2e078dedbb9, type: 3}

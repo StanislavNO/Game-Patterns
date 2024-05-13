@@ -18,10 +18,14 @@ namespace Assets.Project4.Task2
         public void Construct(EnemyFactory factory)
         {
             SetFactory(factory);
-            EnemyFactoryType = _enemyFactory;
         }
 
-        public EnemyFactory EnemyFactoryType { get; private set; }
+        public EnemyFactory EnemyFactoryType => _enemyFactory;
+
+        private void Start()
+        {
+            StartWork();
+        }
 
         public void StartWork()
         {
@@ -42,6 +46,8 @@ namespace Assets.Project4.Task2
                 throw new ArgumentNullException(nameof(factory));
 
             _enemyFactory = factory;
+
+            Debug.Log("Стратегическое изменение фабрики");
         }
 
         private IEnumerator Spawn()

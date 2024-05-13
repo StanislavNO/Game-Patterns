@@ -1,10 +1,15 @@
-﻿namespace Assets.Project4.Task2
+﻿using UnityEngine;
+
+namespace Assets.Project4.Task2
 {
     public class WizardOrk : Wizard
     {
         protected override int GetDamage()
         {
-            throw new System.NotImplementedException();
+            int damage = 7;
+
+            Debug.Log("Урон Магии Орка");
+            return damage;
         }
     }
 }

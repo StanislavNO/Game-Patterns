@@ -1,4 +1,5 @@
 ﻿using System;
+using Object = UnityEngine.Object;
 
 namespace Assets.Project4.Task2
 {
@@ -13,10 +14,10 @@ namespace Assets.Project4.Task2
             switch (enemyType)
             {
                 case EnemyType.Paladin:
-                    return new PaladinOrk();
+                    return Object.Instantiate(Config.OrkConfig.PaladinPrefab);
 
                 case EnemyType.Wizard:
-                    return new WizardOrk();
+                    return Object.Instantiate(Config.OrkConfig.WizardPrefab);
 
                 default:
                     throw new ArgumentException(nameof(enemyType));

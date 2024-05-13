@@ -7,9 +7,9 @@ namespace Assets.Project4.Task2
     {
         List<ITickable> _tickables;
 
-        public void Construct()
+        public GameLooper()
         {
-            _tickables = new();
+            _tickables = new List<ITickable>();
         }
 
         public void AddTickable(ITickable tickable)

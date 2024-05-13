@@ -1,20 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace Assets.Project4.Task2
 {
     public class FactorySwitcher : ITickable
     {
-        [SerializeField] private List<EnemySpawner> _spawners;
+        private List<EnemySpawner> _spawners;
 
         private OrkFactory _orkFactory;
         private ElfFactory _elfFactory;
 
-        public FactorySwitcher(OrkFactory orkFactory, ElfFactory elfFactory)
+        public FactorySwitcher(OrkFactory orkFactory, ElfFactory elfFactory, List<EnemySpawner> spawners)
         {
             _orkFactory = orkFactory;
             _elfFactory = elfFactory;
+
+            _spawners = spawners;
         }
 
         public void Update()
@@ -25,16 +26,20 @@ namespace Assets.Project4.Task2
 
         private void SwitchFactory()
         {
-            foreach (EnemySpawner spawner in _spawners)
+            Debug.Log("OnСвитч фабрики");
+
+            for (int i = 0; i < _spawners.Count; i++)
             {
-                if (spawner != null)
-                    _spawners.Remove(spawner);
-
-                if (spawner.EnemyFactoryType is OrkFactory)
-                    spawner.SetFactory(_elfFactory);
-
-                if (spawner.EnemyFactoryType is ElfFactory)
-                    spawner.SetFactory(_orkFactory);
+                if (_spawners[i].EnemyFactoryType is OrkFactory)
+                {
+                    Debug.Log("Свитч фабрики");
+                    _spawners[i].SetFactory(_elfFactory);
+                }
+                else if (_spawners[i].EnemyFactoryType is ElfFactory)
+                {
+                    Debug.Log("Свитч фабрики");
+                    _spawners[i].SetFactory(_orkFactory);
+                }
             }
         }
     }

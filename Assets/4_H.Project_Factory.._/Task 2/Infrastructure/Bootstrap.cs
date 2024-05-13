@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace Assets.Project4.Task2
@@ -21,17 +20,14 @@ namespace Assets.Project4.Task2
             _elfFactory = new(_enemyConfig);
             _gameLooper = new();
 
-            _factorySwitcher = new FactorySwitcher(_orkFactory, _elfFactory);
+            _factorySwitcher = new FactorySwitcher(_orkFactory, _elfFactory, _spawners);
 
             _gameLooper.AddTickable(_factorySwitcher);
 
             InitSpawners();
         }
 
-        private void Update()
-        {
-            _gameLooper.Update();
-        }
+        private void Update() => _gameLooper.Update();
 
         private void InitSpawners()
         {
@@ -43,7 +39,7 @@ namespace Assets.Project4.Task2
                 _orkFactory
             };
 
-            foreach(EnemySpawner spawner in _spawners)
+            foreach (EnemySpawner spawner in _spawners)
             {
                 spawner.SetFactory(factories[factoryIndex]);
 
