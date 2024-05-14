@@ -16,14 +16,14 @@ namespace Assets.Project4.Task4
         private List<Enemy> _spawnedEnemies;
         private Coroutine _spawn;
 
-        private EnemyVisitor _enemyWeight;
+        private WeightIdentifier _enemyWeight;
         private int _weightCounter;
 
         public event Action<Enemy> Notified;
 
         private void Awake()
         {
-            _enemyWeight = new EnemyVisitor();
+            _enemyWeight = new WeightIdentifier();
         }
 
         public void StartWork()
@@ -65,7 +65,7 @@ namespace Assets.Project4.Task4
             enemy.Died += OnEnemyDied;
 
             enemy.Accept(_enemyWeight);
-            _weightCounter += _enemyWeight.CurrencyWeight;
+            _weightCounter += _enemyWeight.Value;
 
             yield return delay;
         }
@@ -73,35 +73,35 @@ namespace Assets.Project4.Task4
         private void OnEnemyDied(Enemy enemy)
         {
             enemy.Accept(_enemyWeight);
-            _weightCounter -= _enemyWeight.CurrencyWeight;
+            _weightCounter -= _enemyWeight.Value;
 
             Notified.Invoke(enemy);
             enemy.Died -= OnEnemyDied;
             _spawnedEnemies.Remove(enemy);
         }
 
-        private class EnemyVisitor : IEnemyVisitor
+        private class WeightIdentifier : IEnemyVisitor
         {
-            public int CurrencyWeight { get; private set; }
+            public int Value { get; private set; }
 
             public void Visit(Elf elf)
             {
-                CurrencyWeight = 10;
+                Value = 10;
             }
 
             public void Visit(Ork ork)
             {
-                CurrencyWeight = 30;
+                Value = 30;
             }
 
             public void Visit(Human human)
             {
-                CurrencyWeight = 5;
+                Value = 5;
             }
 
             public void Visit(Robot robot)
             {
-                CurrencyWeight = 20;
+                Value = 20;
             }
         }
     }
