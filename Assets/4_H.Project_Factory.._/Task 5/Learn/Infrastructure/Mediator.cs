@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Assets.Project4.Task5.Learn
 {
@@ -18,6 +17,7 @@ namespace Assets.Project4.Task5.Learn
 
         private void OnHealthChanged(int health)
         {
+            Debug.Log(health);
             _healthBar.WriteHealth(health);
         }
     }

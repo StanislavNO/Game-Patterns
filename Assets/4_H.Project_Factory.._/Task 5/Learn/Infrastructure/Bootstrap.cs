@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Assets.Project4.Task5.Learn
 {
@@ -11,16 +10,29 @@ namespace Assets.Project4.Task5.Learn
         [SerializeField] private PlayerGameController _playerController;
 
         private Health _health;
+        private IHealth _decorator;
         private Mediator _mediator;
 
         private void Awake()
         {
-            _health = new(_config.DefaultHealth);
+            _health = new(_config.Health.DefaultHealth);
             _healthBar.Construct(_health.MaxValue);
             _mediator = new(_health, _healthBar);
 
-            _player.Construct(_health);
+            _decorator = DecorateHealth();
+
+            _player.Construct(_decorator);
             _playerController.Construct(_player);
+        }
+
+        private IHealth DecorateHealth()
+        {
+            IHealth health =
+                new ElfHealth(
+                new ArmorHealth(_health, _config.ArmorStat.Armor),
+                this, _config);
+
+            return health;
         }
     }
 }

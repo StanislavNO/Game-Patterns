@@ -12,4 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f8d62d9a8aa94e4da9a1cfedfb22cdc, type: 3}
   m_Name: PlayerConfig
   m_EditorClassIdentifier: 
-  <DefaultHealth>k__BackingField: 100
+  <Health>k__BackingField:
+    <DefaultHealth>k__BackingField: 100
+  <ArmorStat>k__BackingField:
+    <Armor>k__BackingField: 10
+  <ElfStat>k__BackingField:
+    <HealDuration>k__BackingField: 10
+    <AdditionalHeal>k__BackingField: 10
+    <TicksCount>k__BackingField: 4

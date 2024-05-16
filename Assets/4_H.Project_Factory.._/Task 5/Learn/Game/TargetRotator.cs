@@ -1,10 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraFollower : MonoBehaviour
+public class TargetRotator : MonoBehaviour
 {
     [SerializeField] private Camera _target;
+
     private Transform _transform;
 
     private void Awake()
@@ -14,7 +13,6 @@ public class CameraFollower : MonoBehaviour
 
     private void Update()
     {
-
-        transform.LookAt(_target.transform.position); 
+        transform.LookAt(_target.transform.position);
     }
 }

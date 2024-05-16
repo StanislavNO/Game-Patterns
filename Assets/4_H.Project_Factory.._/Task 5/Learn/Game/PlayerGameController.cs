@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Assets.Project4.Task5.Learn
 {
@@ -17,10 +16,10 @@ namespace Assets.Project4.Task5.Learn
 
         private void OnValidate()
         {
-            if(_damage < 0)
+            if (_damage < 0)
                 _damage = 0;
 
-            if(_powerHealing < 0)
+            if (_powerHealing < 0)
                 _powerHealing = 0;
         }
 

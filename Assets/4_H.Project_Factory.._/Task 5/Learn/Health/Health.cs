@@ -2,7 +2,7 @@
 
 namespace Assets.Project4.Task5.Learn
 {
-    public class Health
+    public class Health : IHealth
     {
         public Health(int maxValue)
         {
@@ -17,7 +17,7 @@ namespace Assets.Project4.Task5.Learn
 
         public void Add(int value)
         {
-            if(value < 0)
+            if (value < 0)
                 throw new ArgumentOutOfRangeException(nameof(value));
 
             if (Value + value > MaxValue)

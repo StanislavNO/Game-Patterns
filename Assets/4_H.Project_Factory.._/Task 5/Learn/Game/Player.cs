@@ -4,9 +4,9 @@ namespace Assets.Project4.Task5.Learn
 {
     public class Player : MonoBehaviour
     {
-        private Health _health;
+        private IHealth _health;
 
-        public void Construct(Health health)
+        public void Construct(IHealth health)
         {
             _health = health;
         }
